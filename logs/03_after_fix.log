@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+cachedir: .pytest_cache
+rootdir: /tmp/claude-0/-home-claude/53952f10-224f-5019-bac8-59ea3cd582c6/scratchpad/fix
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 20 items
+
+tests/test_tracker.py::test_add_task PASSED                              [  5%]
+tests/test_tracker.py::test_complete_task PASSED                         [ 10%]
+tests/test_tracker.py::test_list_pending PASSED                          [ 15%]
+tests/test_tracker.py::test_summary PASSED                               [ 20%]
+tests/test_tracker.py::test_sort_by_priority PASSED                      [ 25%]
+tests/test_tracker.py::test_sort_by_due_none_last PASSED                 [ 30%]
+tests/test_tracker.py::test_sort_by_title_case_insensitive PASSED        [ 35%]
+tests/test_tracker.py::test_filter_done PASSED                           [ 40%]
+tests/test_tracker.py::test_unknown_sort_keeps_insertion_order PASSED    [ 45%]
+tests/test_tracker.py::test_id_not_reused_after_delete PASSED            [ 50%]
+tests/test_tracker.py::test_complete_targets_correct_task_after_delete PASSED [ 55%]
+tests/test_tracker.py::test_invalid_priority_rejected PASSED             [ 60%]
+tests/test_tracker.py::test_invalid_due_rejected[tomorrow] PASSED        [ 65%]
+tests/test_tracker.py::test_invalid_due_rejected[2026-13-01] PASSED      [ 70%]
+tests/test_tracker.py::test_invalid_due_rejected[2026-02-30] PASSED      [ 75%]
+tests/test_tracker.py::test_invalid_due_rejected[01-12-2026] PASSED      [ 80%]
+tests/test_tracker.py::test_invalid_due_rejected[] PASSED                [ 85%]
+tests/test_tracker.py::test_rejected_task_is_not_stored PASSED           [ 90%]
+tests/test_tracker.py::test_valid_due_and_none_accepted PASSED           [ 95%]
+tests/test_tracker.py::test_cli_rejects_invalid_priority PASSED          [100%]
+
+============================== 20 passed in 0.05s ==============================
