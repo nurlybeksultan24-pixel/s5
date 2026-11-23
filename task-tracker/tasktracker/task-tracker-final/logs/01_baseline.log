@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+cachedir: .pytest_cache
+rootdir: /tmp/claude-0/-home-claude/53952f10-224f-5019-bac8-59ea3cd582c6/scratchpad/fix
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 9 items
+
+tests/test_tracker.py::test_add_task PASSED                              [ 11%]
+tests/test_tracker.py::test_complete_task PASSED                         [ 22%]
+tests/test_tracker.py::test_list_pending PASSED                          [ 33%]
+tests/test_tracker.py::test_summary PASSED                               [ 44%]
+tests/test_tracker.py::test_sort_by_priority PASSED                      [ 55%]
+tests/test_tracker.py::test_sort_by_due_none_last PASSED                 [ 66%]
+tests/test_tracker.py::test_sort_by_title_case_insensitive PASSED        [ 77%]
+tests/test_tracker.py::test_filter_done PASSED                           [ 88%]
+tests/test_tracker.py::test_unknown_sort_keeps_insertion_order PASSED    [100%]
+
+============================== 9 passed in 0.03s ===============================

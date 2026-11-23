@@ -1,0 +1,14 @@
+--- ../tt/task-tracker/tasktracker/cli.py	2026-11-23 19:50:56.000000000 +0500
++++ tasktracker/cli.py	2026-11-23 20:41:18.672280688 +0500
+@@ -29,7 +29,10 @@
+     tracker = TaskTracker(storage.load())
+ 
+     if args.cmd == "add":
+-        t = tracker.add(args.title, args.priority, args.due)
++        try:
++            t = tracker.add(args.title, args.priority, args.due)
++        except ValueError as e:
++            parser.error(str(e))
+         storage.save(tracker.tasks)
+         print(f"Added #{t['id']}: {t['title']}")
+     elif args.cmd == "list":

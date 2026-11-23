@@ -1,0 +1,140 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python3
+cachedir: .pytest_cache
+rootdir: /tmp/claude-0/-home-claude/53952f10-224f-5019-bac8-59ea3cd582c6/scratchpad/fix
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 20 items
+
+tests/test_tracker.py::test_add_task PASSED                              [  5%]
+tests/test_tracker.py::test_complete_task PASSED                         [ 10%]
+tests/test_tracker.py::test_list_pending PASSED                          [ 15%]
+tests/test_tracker.py::test_summary PASSED                               [ 20%]
+tests/test_tracker.py::test_sort_by_priority PASSED                      [ 25%]
+tests/test_tracker.py::test_sort_by_due_none_last PASSED                 [ 30%]
+tests/test_tracker.py::test_sort_by_title_case_insensitive PASSED        [ 35%]
+tests/test_tracker.py::test_filter_done PASSED                           [ 40%]
+tests/test_tracker.py::test_unknown_sort_keeps_insertion_order PASSED    [ 45%]
+tests/test_tracker.py::test_id_not_reused_after_delete FAILED            [ 50%]
+tests/test_tracker.py::test_complete_targets_correct_task_after_delete PASSED [ 55%]
+tests/test_tracker.py::test_invalid_priority_rejected FAILED             [ 60%]
+tests/test_tracker.py::test_invalid_due_rejected[tomorrow] FAILED        [ 65%]
+tests/test_tracker.py::test_invalid_due_rejected[2026-13-01] FAILED      [ 70%]
+tests/test_tracker.py::test_invalid_due_rejected[2026-02-30] FAILED      [ 75%]
+tests/test_tracker.py::test_invalid_due_rejected[01-12-2026] FAILED      [ 80%]
+tests/test_tracker.py::test_invalid_due_rejected[] FAILED                [ 85%]
+tests/test_tracker.py::test_rejected_task_is_not_stored FAILED           [ 90%]
+tests/test_tracker.py::test_valid_due_and_none_accepted PASSED           [ 95%]
+tests/test_tracker.py::test_cli_rejects_invalid_priority FAILED          [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_id_not_reused_after_delete ________________________
+
+    def test_id_not_reused_after_delete():
+        t = TaskTracker()
+        t.add("A")
+        t.add("B")
+        t.delete(1)
+        c = t.add("C")
+>       assert c["id"] == 3
+E       assert 2 == 3
+
+tests/test_tracker.py:74: AssertionError
+________________________ test_invalid_priority_rejected ________________________
+
+    def test_invalid_priority_rejected():
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:89: Failed
+_____________________ test_invalid_due_rejected[tomorrow] ______________________
+
+bad = 'tomorrow'
+
+    @pytest.mark.parametrize("bad", ["tomorrow", "2026-13-01", "2026-02-30", "01-12-2026", ""])
+    def test_invalid_due_rejected(bad):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:95: Failed
+____________________ test_invalid_due_rejected[2026-13-01] _____________________
+
+bad = '2026-13-01'
+
+    @pytest.mark.parametrize("bad", ["tomorrow", "2026-13-01", "2026-02-30", "01-12-2026", ""])
+    def test_invalid_due_rejected(bad):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:95: Failed
+____________________ test_invalid_due_rejected[2026-02-30] _____________________
+
+bad = '2026-02-30'
+
+    @pytest.mark.parametrize("bad", ["tomorrow", "2026-13-01", "2026-02-30", "01-12-2026", ""])
+    def test_invalid_due_rejected(bad):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:95: Failed
+____________________ test_invalid_due_rejected[01-12-2026] _____________________
+
+bad = '01-12-2026'
+
+    @pytest.mark.parametrize("bad", ["tomorrow", "2026-13-01", "2026-02-30", "01-12-2026", ""])
+    def test_invalid_due_rejected(bad):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:95: Failed
+_________________________ test_invalid_due_rejected[] __________________________
+
+bad = ''
+
+    @pytest.mark.parametrize("bad", ["tomorrow", "2026-13-01", "2026-02-30", "01-12-2026", ""])
+    def test_invalid_due_rejected(bad):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:95: Failed
+_______________________ test_rejected_task_is_not_stored _______________________
+
+    def test_rejected_task_is_not_stored():
+        t = TaskTracker()
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/test_tracker.py:101: Failed
+______________________ test_cli_rejects_invalid_priority _______________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-0/test_cli_rejects_invalid_prior0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f22b86ef950>
+capsys = <_pytest.capture.CaptureFixture object at 0x7f22b857eba0>
+
+    def test_cli_rejects_invalid_priority(tmp_path, monkeypatch, capsys):
+        from tasktracker import cli
+        monkeypatch.chdir(tmp_path)
+>       with pytest.raises(SystemExit) as e:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SystemExit
+
+/tmp/claude-0/-home-claude/53952f10-224f-5019-bac8-59ea3cd582c6/scratchpad/fix/tests/test_tracker.py:115: Failed
+----------------------------- Captured stdout call -----------------------------
+Added #1: A
+=========================== short test summary info ============================
+FAILED tests/test_tracker.py::test_id_not_reused_after_delete - assert 2 == 3
+FAILED tests/test_tracker.py::test_invalid_priority_rejected - Failed: DID NO...
+FAILED tests/test_tracker.py::test_invalid_due_rejected[tomorrow] - Failed: D...
+FAILED tests/test_tracker.py::test_invalid_due_rejected[2026-13-01] - Failed:...
+FAILED tests/test_tracker.py::test_invalid_due_rejected[2026-02-30] - Failed:...
+FAILED tests/test_tracker.py::test_invalid_due_rejected[01-12-2026] - Failed:...
+FAILED tests/test_tracker.py::test_invalid_due_rejected[] - Failed: DID NOT R...
+FAILED tests/test_tracker.py::test_rejected_task_is_not_stored - Failed: DID ...
+FAILED tests/test_tracker.py::test_cli_rejects_invalid_priority - Failed: DID...
+========================= 9 failed, 11 passed in 0.07s =========================
